@@ -12,7 +12,7 @@
 
 
 
-    <p><strong>Ponadto, pełnej wersji produktu:</strong></p>
+    <p><strong>Ponadto, już wkrótce w pełnej wersji gry:</strong></p>
     <p> - Pięć etapów z wzrastającym poziomem trudności.<br>
      - Faza projektu i prezentacji końcowej.<br>
      - Zdarzenia specjalne.<br>
@@ -22,7 +22,7 @@
      - Grafika.<br>
      - Tabela wyników.
       </p><br>
-    <p><strong>Zapraszamy!</strong></p>
+    <p><strong>Dziękijemy i zapraszamy!</strong></p>
 
 
 
@@ -33,9 +33,9 @@
 
 {#    <a href="/new_player">Przerwij grę i dodaj nowego gracza</a>#}
 {#    <a href="/delete_player/{{ player.pk }}">Zakończ obecną rozgrywkę i oddaj identyfikator</a>#}
-    <a href="/main_menu">Powrót do menu głównego</a>
+{#    <a href="/main_menu">Powrót do menu głównego</a>#}
 <form method="GET" action="/main_menu/"><br>
     {% csrf_token %}
-    <input type="submit" value="Kontynuuj">
+    <input type="submit" value="Powrót do menu głównego">
 </form>
 {% endblock %}

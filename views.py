@@ -135,7 +135,7 @@ class TheMorningView(View):  # view only checks stats and progress, no action fo
 
 
         }
-        if ctx['day_of_the_course'].day_of_course == 11:
+        if ctx['day_of_the_course'].day_of_course > 9:
             return redirect(f"/demo_final/{player_id}")
         else:
             return render(request, 'simcourse/the_morning.html', ctx)
@@ -143,8 +143,8 @@ class TheMorningView(View):  # view only checks stats and progress, no action fo
     def post(self, request, player_id):
         progress = CourseProgress.objects.get(related_to=player_id)
         stats_check = PlayerStats.objects.get(stats=player_id)
-        stats_check.mental_state = random.randint(1, 5)  # modifies mood life is brutal
-        stats_check.save()
+        # stats_check.mental_state = random.randint(1, 5)  # modifies mood life is brutal
+        # stats_check.save()
         if stats_check.knowledge_state > 6:
             stats_check.knowledge_state = 6
             stats_check.save()
@@ -163,6 +163,8 @@ class TheMorningView(View):  # view only checks stats and progress, no action fo
         elif stats_check.sleep_state < 1:
             stats_check.sleep_state = 1
             stats_check.save()
+        elif progress.day_of_course > 9:
+            return redirect(f"/demo_final/{player_id}")
         elif progress.day_of_course == 9:
             return redirect(f"/exam1_intro/{player_id}")
         elif progress.day_of_course == 23:
@@ -208,6 +210,7 @@ class GoToSchoolView(View):  # action view
         progress_counter = CourseProgress.objects.get(related_to=player_id)  # roll up to next phase
         sleep_stat__up = PlayerStats.objects.get(stats=player_id)  # sleep attribute up 1
         sleep_stat__up.knowledge_state += 1  # this adds knowledge
+        # sleep_stat__up.mental_state += 1
         sleep_stat__up.save()
         progress_counter.day_of_course += 1  # this rolls progress forward
         progress_counter.save()
@@ -250,7 +253,7 @@ class GoSleepInsteadSchoolView(View):  # action get sleep instead school result 
         sleep_stat__up.knowledge_state -= 1  # this adds knowledge
         sleep_stat__up.sleep_state += 1  # sleep attribute up 1
         sleep_stat__up.save()
-        sleep_stat__up.mental_state = random.randint(1, 5)  # modifies mood life is brutal
+        sleep_stat__up.mental_state -= 1  # modifies mood life is brutal
         sleep_stat__up.save()
         progress_counter.day_of_course += 1
         progress_counter.save()
@@ -326,7 +329,7 @@ class GoodNightSleepView(View):  # action view
         progress_counter = CourseProgress.objects.get(related_to=player_id)  # roll up to next phase
         sleep_stat__up = PlayerStats.objects.get(stats=player_id)  # sleep attribute up 1
         sleep_stat__up.sleep_state += 1  # this adds knowledge
-        sleep_stat__up.mental_state = random.randint(3, 6)
+        sleep_stat__up.mental_state += 1
         sleep_stat__up.save()
         progress_counter.day_of_course += 1  # this rolls progress forward
         progress_counter.save()
@@ -368,11 +371,10 @@ class WentPartyView(View):  # action view
     def post(self, request, player_id):
         progress_counter = CourseProgress.objects.get(related_to=player_id)  # roll up to next phase
         party_stats_mod = PlayerStats.objects.get(stats=player_id)  # sleep attribute up 1
-        party_stats_mod.knowledge_state -= 1  # this adds knowledge
-        party_stats_mod.sleep_state -= 1  # sleep attribute up 1
-        party_stats_mod.mental_state += 1
+        party_stats_mod.knowledge_state -= 2  # this adds knowledge
+        party_stats_mod.sleep_state -= 2  # sleep attribute up 1
         party_stats_mod.save()
-        party_stats_mod.mental_state = random.randint(1, 5)  # modifies mood life is brutal
+        party_stats_mod.mental_state = random.randint(3, 5)  # modifies mood life is brutal
         party_stats_mod.save()
         progress_counter.day_of_course += 1
         progress_counter.save()
@@ -522,7 +524,7 @@ class LearnAfterSleptView(View):
         chase_knowledge = PlayerStats.objects.get(stats=player_id)  # sleep attribute up 1
         chase_knowledge.knowledge_state += 1  # this adds knowledge
         chase_knowledge.sleep_state -= 1
-        chase_knowledge.mental_state = random.randint(1, 3)  # modifies mood life is brutal
+        chase_knowledge.mental_state += 1   # modifies mood life is brutal
         chase_knowledge.save()
         progress_counter.day_of_course += 1  # this rolls progress forward
         progress_counter.save()
@@ -565,7 +567,7 @@ class SleepEvenMoreView(View):
         more_sleep = PlayerStats.objects.get(stats=player_id)  # sleep attribute up 1
         more_sleep.knowledge_state -= 1  # this adds knowledge
         more_sleep.sleep_state += 1
-        more_sleep.mental_state = random.randint(3, 5)  # modifies mood life is brutal
+        more_sleep.mental_state -= 1  # modifies mood life is brutal
         more_sleep.save()
         progress_counter.day_of_course += 1  # this rolls progress forward
         progress_counter.save()
@@ -618,15 +620,23 @@ class Exam1ActionView(View):
 
     def post(self, request, player_id):
         # progress_summary = CourseProgress.objects.get(related_to=player_id)  # roll up to next phase
-        # stats_summary = PlayerStats.objects.get(stats=player_id)  # sleep attribute up 1
+        stats_summary = PlayerStats.objects.get(stats=player_id)  # sleep attribute up 1
         # exams = Exams.objects.filter(relation=player_id)
-        exam = ExamResult.objects.get(related_to=player_id)
-        exam.result = random.randint(1, 7)
-        exam.save()
-        # progress_summary.day_of_course += 1  # this rolls progress forward cut in moment forward down
-        # progress_summary.save()
-        return redirect(f"/exam1_action/{player_id}")
-
+        if stats_summary.mental_state == 1 or stats_summary.knowledge_state == 1 or stats_summary.sleep_state == 1:
+            exam = ExamResult.objects.get(related_to=player_id)
+            exam.result = random.randint(1, 4)
+            exam.save()
+            return redirect(f"/exam1_action/{player_id}")
+        elif stats_summary.mental_state == 6 or stats_summary.knowledge_state == 6 or stats_summary.sleep_state == 6:
+            exam = ExamResult.objects.get(related_to=player_id)
+            exam.result = random.randint(3, 7)
+            exam.save()
+            return redirect(f"/exam1_action/{player_id}")
+        else:
+            exam = ExamResult.objects.get(related_to=player_id)
+            exam.result = random.randint(2, 7)
+            exam.save()
+            return redirect(f"/exam1_action/{player_id}")
 
 class ChickenView(View):
     def get(self, request, player_id):
