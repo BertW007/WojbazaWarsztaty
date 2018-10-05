@@ -1,0 +1,14 @@
+{% extends 'simcourse/base.html' %}
+<title>Kill this fool!</title>
+{% block content %}
+<form method="POST">
+    <h1>Na kompost.</h1>
+    <p><strong>Imię: {{ player.name }}</strong>
+    <br><strong>Przydomek: {{ player.nickname }}</strong>
+    {% csrf_token %}
+    {{ form.as_p }}<br>
+        <button TYPE="submit">Kill</button>
+<a href="/main_menu">Don't kill/Powrót do menu.</a>
+</form>
+
+{% endblock %}

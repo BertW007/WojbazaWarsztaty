@@ -1,0 +1,14 @@
+{% extends 'simcourse/base.html' %}
+{% block content %}
+    <h1>Jesteś w szkole! Wiedza wzrasta. To dobry znak.</h1>
+    <h2>Solidna frekwencja na zajęciach to podstawa. To tutaj pieczołowicie i z
+    rozmachem, łopatami wiedza wrzucana jest do Twojej zacnej głowy.</h2>
+
+{#    <a href="/new_player">Przerwij grę i dodaj nowego gracza</a>#}
+{#    <a href="/delete_player/{{ player.pk }}">Mimo wszystko dokonaj kasacji kursanta i wyjdź do menu głównego</a>#}
+{#    <a href="/main_menu">Powrót do menu </a>#}
+<form method="GET" action="/after_school/{{ player.pk }}/"><br>
+    {% csrf_token %}
+    <input type="submit" value="Wróć ze szkoły i przejdź do kloejnej części dnia ze zdobytą wiedzą">
+</form>
+{% endblock %}

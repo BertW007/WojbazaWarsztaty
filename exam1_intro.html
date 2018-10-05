@@ -1,0 +1,41 @@
+{% extends 'simcourse/base.html' %}
+{% block content %}
+    <h1>IIIIIIts shooowtimeee!!! Czas na egzaminy. Na pierwszy ogień podstawy Paythona.<br>
+    Powodzenia i niech moc bedzie z Tobą! Tylko się nie zapętl.</h1>
+    <a href="/new_player">Przerwij grę i dodaj nowego gracza</a>
+    <a href="/delete_player/{{ player.pk }}">Zakończ obecną rozgrywkę i skasuj gracza</a>
+    <a href="/main_menu">Powrót do menu głównego</a>
+
+        <p><strong>Imię: {{ player.name }}</strong>
+        <br><strong>Ksywka: {{ player.nickname }}</strong>
+
+
+    {% for stat in stats %}
+      <p>Stan wyspania: {{ stat.get_sleep_state_display }}</p>
+      <p>Stan psychiczny: {{ stat.get_mental_state_display }}</p>
+      <p>Stan wiedzy: {{ stat.get_knowledge_state_display }}</p>
+    {% endfor %}<br>
+
+    {% for day in day_of_the_course %}
+        <p>Dzień kursu: {{ day.get_day_of_course_display }}</p>
+    {% endfor %}<br>
+
+    {% for exam in exams %}
+        <p>Właśnie czeka Cię następujący egzamin: {{ exam.get_exam_display }}</p>
+    {% endfor %}
+
+    {% for result in results %}
+        <p>Wynik ostatniego egzaminu: {{ result.get_result_display }}</p>
+    {% endfor %}
+
+    <form method="POST" action="/exam1_action/{{ player.pk }}">
+      {% csrf_token %}
+      <input type="submit" value="Przystąp do egzaminu">
+</form>
+<form method="GET" action="/exam_chicken/{{ player.pk }}">
+    {% csrf_token %}
+    <input type="submit" value="{{ player.nickname }} tam nie idzie,
+        bo wie że będzie babol">
+</form>
+
+    {% endblock %}

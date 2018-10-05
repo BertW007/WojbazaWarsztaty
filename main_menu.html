@@ -1,0 +1,30 @@
+{% extends 'simcourse/base.html' %}
+{% block content %}
+    <br><center><h1>Programming bootcamp simulator 1.0. Wersja WIP</h1><br></center>
+    <center><h2>"Babol, ale działa. Dwie gwiazdki" -New York Times</h2><br></center>
+    <center><h3>"Musisz zagrać!" -Marco Polo (musiał to powiedzieć chociaż raz w trakcie swojego żywota)</h3></center><br>
+    <center><h3>Witaj graczu! Oto twoi podopieczni.</h3></center>
+
+
+<center><a class="button" href="/new_player" >Stwórz nowego kursanta</a></center><br>
+
+
+    {% for player in players %}
+        <center><p><strong>Imię: {{ player.name }}</strong>
+        <br><strong>Przydomek: {{ player.nickname }}</strong><br>
+
+       <a href="/delete_player/{{ player.pk }}">Terminacja kursanta</a>
+       <a href="/update_player/{{ player.pk }}">Zmień osobowość</a>
+       <a href="/update_progress/{{ player.courseprogress.pk }}">Resetuj kurs/Napraw czas</a>
+       <a href="/the_morning/{{ player.pk }}">Rozpocznij lub kontynuuj grę/Zacznij turę</a></center>
+
+    {% endfor %}<br><br>
+
+    <h3>Dostępne tryby gry</h3>
+    <p>Tryb gry dla jednego gracza:<br>Kieruj poczynaniami tylko jednego gracza do końca. Kursu lub gracza.
+<br><br>Tryb gry dla wielu graczy:<br>Jeden dzień gry to 1 tura. Po zakończeniu tury<br>
+    należy przejść do menu i przekazać ruch kolejnemu graczowi.<br>
+{#        <br>Tryb gry: manager - 1 gracz<br>#}
+{#    Gra turowa grupą kursantów.<br><br>Tryb gry: manager na wielu graczy.#}
+{#    <br>Rywalizacja dwóch lub więcej grup kursantów.<br></p>#}
+{% endblock %}

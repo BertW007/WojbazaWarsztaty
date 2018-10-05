@@ -1,0 +1,12 @@
+{% extends "simcourse/base.html" %}
+
+{% block content %}
+<form method="POST">
+<h1>Tutaj możesz ustawić poziom trudności. Im słabsze atrybuty startowe, tym bardziej pod górę!
+    A wiadomo że i m większe wyzwanie, tym nagroda bardziej cieszy.</h1>
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" >Zatwierdź</button>
+</form>
+{% endblock %}

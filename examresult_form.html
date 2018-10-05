@@ -1,0 +1,16 @@
+{% extends "simcourse/base.html" %}
+
+{% block content %}
+<form method="POST">
+<h1>Powodzenia , drogi graczu. Niechaj rezultaty nie zawiodą Twoich oczekiwań! Ucz się pilnie i odrabiaj
+    prace domowe! Jakie wyniki przewidujesz?</h1>
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" >Kontynuuj</button>
+
+</form>
+<form>
+{#    <button type="submit" action="/main_menu">Return</button>#}
+</form>
+{% endblock %}

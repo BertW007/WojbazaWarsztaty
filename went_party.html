@@ -1,0 +1,16 @@
+{% extends 'simcourse/base.html' %}
+{% block content %}
+    <h1>Zadzwonił telefon, jest impreza. Odpowiedź: tak. Chyba było fajnie,
+    szkoda, że nic nie pamiętasz, w tym nabytej wcześniej wiedzy.
+    Ona umarła wraz z wieloma milionami szarych komórek.
+    </h1>
+{#    <a href="/new_player">Przerwij grę i dodaj nowego gracza</a>#}
+    <a href="/delete_player/{{ player.pk }}">Olej szkołę i idź w cug.</a>
+{#    <a href="/main_menu">Powrót do menu głównego</a>#}
+
+
+<form method="POST" action="/the_morning/{{ player.pk }}"><br>
+    {% csrf_token %}
+    <input type="submit" value="Pobudka!!!">
+</form>
+{% endblock %}

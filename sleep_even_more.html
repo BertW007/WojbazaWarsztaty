@@ -1,0 +1,13 @@
+{% extends 'simcourse/base.html' %}
+{% block content %}
+    <h1>I co? Dalej w kimę? Musiało być bardzo źle chyba? Albo leniwie.</h1>
+    <h2>We śnie prześladował Cię potwór zwany Dedlajnem.</h2>
+
+    <a href="/new_player">Przerwij grę i dodaj nowego gracza</a>
+    <a href="/delete_player/{{ player.pk }}">Uciekaj przed Dedlajnem, nie wracaj tam!</a>
+    <a href="/main_menu">Powrót do menu głównego</a>
+<form method="POST" action="/the_morning/{{ player.pk }}/"><br>
+    {% csrf_token %}
+    <input type="submit" value="Wstawaj, leserze!">
+</form>
+{% endblock %}

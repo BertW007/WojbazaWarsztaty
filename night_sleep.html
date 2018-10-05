@@ -1,0 +1,16 @@
+{% extends 'simcourse/base.html' %}
+{% block content %}
+    <h1>Wyspałeś się. To dobrze wróży, jeśli chodzi o zdrowie.
+
+    </h1>
+{#    <a href="/new_player">Przerwij grę i dodaj nowego gracza</a>#}
+    <a href="/delete_player/{{ player.pk }}">Mimo wszystko zakończ to i oddaj identyfikator</a>
+{#    <a href="/main_menu">Powrót do menu głównego</a>#}
+
+
+
+<form method="POST" action="/the_morning/{{ player.pk }}">
+    {% csrf_token %}
+    <br><input type="submit" value="Pobudka!!!">
+</form>
+{% endblock %}

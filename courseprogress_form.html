@@ -1,0 +1,15 @@
+{% extends "simcourse/base.html" %}
+
+{% block content %}
+<form method="POST">
+<h1>Pamiętaj! Pozwól kursantowi się wyspać, inaczej będzie miał problemy.</h1>
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" >Kontynuuj</button>
+
+</form>
+<form>
+{#    <button type="submit" action="view_players">Return</button>#}
+</form>
+{% endblock %}

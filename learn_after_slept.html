@@ -1,0 +1,16 @@
+{% extends 'simcourse/base.html' %}
+{% block content %}
+    <h1>Pomimo babola, jakim niewątpliwie jest nieobecność na wykładzie, udało Ci się nadrobić
+    materiał.</h1>
+    <h2>Nauka zamiast snu, ale większość zrobiona. Niewątpliwy krok w kierunku sukcesu, ale też
+        zbliża do rychłej transformacji w
+    programistyczne zombie.</h2>
+
+{#    <a href="/new_player">Przerwij grę i dodaj nowego gracza</a>#}
+    <a href="/delete_player/{{ player.pk }}">Zrezygnuj, mówię Ci! Bo uschniesz.</a>
+{#    <a href="/main_menu">Powrót do menu głównego</a>#}
+<form method="POST" action="/the_morning/{{ player.pk }}/"><br>
+    {% csrf_token %}
+    <input type="submit" value="Kontynuuj">
+</form>
+{% endblock %}

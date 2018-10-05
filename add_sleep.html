@@ -1,0 +1,17 @@
+{% extends 'simcourse/base.html' %}
+{% block content %}
+    <h1>Są gumisie, są troskliwe misie, ale dzisiaj rano ważniejsze są inne misie - NIE CHCE MISIĘ.</h1>
+    <h2>To naprawdę niedobrze tak poprostu nie iść na wykład.<br> No chyba, że naprawdę umierasz
+    z braku snu,<br> z powodu jakiejś poważnej choroby,<br> lub jeśli jesteś na skraju
+        załamania nerwowego.<br> W takim wypadku safety first, Twoje i innych.</h2>
+
+
+
+{#    <a href="/new_player">Przerwij grę i dodaj nowego gracza</a>#}
+{#    <a href="/delete_player/{{ player.pk }}">To za ciężkie, zrezygnuj teraz!</a>#}
+{#    <a href="/main_menu">Powrót do menu głównego</a>#}
+<form method="GET" action="/after_day_sleep/{{ player.pk }}"><br>
+    {% csrf_token %}
+    <input type="submit" value="Kontynuuj">
+</form>
+{% endblock %}

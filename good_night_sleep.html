@@ -1,0 +1,15 @@
+{% extends 'simcourse/base.html' %}
+{% block content %}
+    <h1>Nie ma to, jak dobrze się wyspać, duża część pracy chyba wykonana</h1>
+    <h2>"-Te, Zdzisław, pamiętasz ino tego gościa co nie sypioł?<br>
+    - Pewno, Heniek. Chałupę ino własnymi rękoma wybudowoł. Równy z niego chłop był"<br>
+    - Rozmowa dwóch kompanów na budowie</h2>
+
+{#    <a href="/new_player">Przerwij grę i dodaj nowego gracza</a>#}
+{#    <a href="/delete_player/{{ player.pk }}">Zakończ obecną rozgrywkę i skasuj gracza</a>#}
+{#    <a href="/main_menu">Powrót do menu głównego</a>#}
+<form method="POST" action="/the_morning/{{ player.pk }}/"><br>
+    {% csrf_token %}
+    <input type="submit" value="Kontynuuj">
+</form>
+{% endblock %}

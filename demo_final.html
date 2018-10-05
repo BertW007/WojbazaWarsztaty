@@ -1,0 +1,41 @@
+{% extends 'simcourse/base.html' %}
+{% block content %}
+    <h1>Zacny użytkowniku! Ogromnie dziękuję za wzięcie udziału w pokazowej części gry!
+        Już wkrótce pełna wersja programu.
+
+    </h1>
+       <p><strong>Twój wynik z egzaminu z podstaw Paythona to: {{ results.get_result_display }}</strong></p>
+       <p>Detale kursanta:</p>
+       <p><strong>Imię: {{ player.name }}</strong></p>
+       <p><strong>Ksywka: {{ player.nickname }}</strong></p><br>
+
+
+
+
+    <p><strong>Ponadto, pełnej wersji produktu:</strong></p>
+    <p> - Pięć etapów z wzrastającym poziomem trudności.<br>
+     - Faza projektu i prezentacji końcowej.<br>
+     - Zdarzenia specjalne.<br>
+     - Ulepszony tryb multiplayer.<br>
+     - Tryb managera - zarządzanie grupami.<br>
+     - Tryb zarządzania grupami na wielu graczy - rywalizacja mentorów.<br>
+     - Grafika.<br>
+     - Tabela wyników.
+      </p><br>
+    <p><strong>Zapraszamy!</strong></p>
+
+
+
+{#    {% for result in results %}#}
+{#         <p>O to jak poszedł egzamin z Pajtona: {{ results.get_result_display }}</p>#}
+{#    {% endfor %}#}
+
+
+{#    <a href="/new_player">Przerwij grę i dodaj nowego gracza</a>#}
+{#    <a href="/delete_player/{{ player.pk }}">Zakończ obecną rozgrywkę i oddaj identyfikator</a>#}
+    <a href="/main_menu">Powrót do menu głównego</a>
+<form method="GET" action="/main_menu/"><br>
+    {% csrf_token %}
+    <input type="submit" value="Kontynuuj">
+</form>
+{% endblock %}

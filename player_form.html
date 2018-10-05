@@ -1,0 +1,15 @@
+{% extends "simcourse/base.html" %}
+
+{% block content %}
+<form method="POST">
+<h1>Podaj imię i przydomek kursanta</h1>
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" >Zatwierdź</button>
+
+</form>
+
+    <a href="/main_menu">Powrót do głównego menu</a>
+
+{% endblock %}

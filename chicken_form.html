@@ -1,0 +1,15 @@
+{% extends 'simcourse/base.html' %}
+{% block content %}
+    <h1>"Czip czip czip czip, Cziiikeeen!!" -gościu z The Room
+
+    </h1>
+    <h2>Siadła Ci psycha, czy chęci uciekły? Ogarnij się i czym prędzej zapisz ponownie. Powodzenia!</h2>
+
+
+    <a href="/delete_player/{{ player.pk }}">Zakończ obecną rozgrywkę i oddaj identyfikator</a>
+
+<form method="GET" action="/main_menu/"><br>
+    {% csrf_token %}
+    <input type="submit" value="Kontynuuj">
+</form>
+{% endblock %}

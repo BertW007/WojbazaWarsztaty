@@ -1,0 +1,20 @@
+{% extends 'simcourse/base.html' %}
+{% block content %}
+    <h1>Gratulacje! Egzamin zaliczony! Co robisz w Weekend? Do wyboru extra warsztaty. A może
+    aktywna regeneracja i wypoczynek? Opcja numer 3: na imprezę.
+    </h1>
+    <h2>Szczegóły załączone poniżej:</h2><br>
+
+{#    {% for result in results %}#}
+         <p>O to jak poszło: {{ result.get_result_display }}</p>
+{#    {% endfor %}#}
+
+
+    <a href="/new_player">Przerwij grę i dodaj nowego gracza</a>
+    <a href="/delete_player/{{ player.pk }}">Zakończ obecną rozgrywkę i oddaj identyfikator</a>
+    <a href="/main_menu">Powrót do menu głównego</a>
+<form method="GET" action="/main_menu/"><br>
+    {% csrf_token %}
+    <input type="submit" value="Kontynuuj">
+</form>
+{% endblock %}

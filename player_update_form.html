@@ -1,0 +1,15 @@
+{% extends 'simcourse/base.html' %}
+<title>Update player details</title>
+{% block content %}
+    <h1>Zmień dane kursanta</h1>
+<form method="POST">
+    {% for player in players %}
+    <p><strong>Nowe imię:{{ player.name }}</strong>
+    <br>Nowy przydomek: {{ player.nickname }}
+    {% endfor %}
+    {% csrf_token %}
+    {{ form.as_p }}
+        <button type="submit">Zatwierdź zmiany</button>
+    <button action="/main_menu">Powrót do menu głównego</button>
+</form>
+{% endblock %}

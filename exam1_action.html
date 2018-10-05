@@ -1,0 +1,16 @@
+{% extends 'simcourse/base.html' %}
+{% block content %}
+    <h1>Piszesz egzamin. Siedzisz i dłubiesz, piszesz i sprawdzasz. Czas jakby się zatrzymał,
+        a jednocześnie leci za szybko...
+    </h1>
+    <h2>
+    </h2>
+
+
+    <a href="/delete_player/{{ player.pk }}">Wyjdź natychmiast z tego mordoru, nie wracaj tam!</a>
+
+<form method="POST" action="/exam_check/{{ player.pk }}/"><br>
+    {% csrf_token %}
+    <input type="submit" value="Git add, commit -m, push origin master. Pull request. Zakończ egzamin">
+</form>
+{% endblock %}

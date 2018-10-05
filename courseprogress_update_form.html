@@ -1,0 +1,20 @@
+{% extends 'simcourse/base.html' %}
+<title>Update player</title>
+{% block content %}
+    <h1>Zacny graczu, witaj w menagerze dnia świstaka. Resetuj lub napraw czas. pamiętaj: musi być to poranek!</h1>
+<form method="POST" action="#">
+{#    {% for player in players %}#}
+{#    <p><strong>Name:{{ player.name }}</strong>#}
+{#    <br><strong>Ksywka: {{ player.nickname }}</strong>#}
+{#    {% endfor %}#}
+{#     {% for stat in stats %}#}
+{#      <p>Stan wyspania: {{ stat.get_sleep_state_display }}</p>#}
+{#      <p>Stan psychiczny: {{ stat.get_mental_state_display }}</p>#}
+{#      <p>Stan wiedzy: {{ stat.get_knowledge_state_display }}</p>#}
+{#    {% endfor %}#}
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Zatwierdź zmiany</button>
+    <button action="/main_menu">Powrót do menu głównego</button>
+</form>
+{% endblock %}

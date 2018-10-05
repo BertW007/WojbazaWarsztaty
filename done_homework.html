@@ -1,0 +1,14 @@
+{% extends 'simcourse/base.html' %}
+{% block content %}
+    <h1>Brawo. Odrobiłeś wszystkie zadania domowe</h1>
+    <h2>Nie pospane, ale od...robione. Odrobione prace domowe to gwarancja sukcesu na kursie. O ile
+        wczesniej nie przeistoczysz się w zombi z braku snu.</h2>
+
+    <a href="/new_player">Przerwij grę i dodaj nowego gracza</a>
+    <a href="/delete_player/{{ player.pk }}">Zakończ obecną rozgrywkę i skasuj gracza</a>
+    <a href="/main_menu">Powrót do menu głównego</a>
+<form method="POST" action="/the_morning/{{ player.pk }}/"><br>
+    {% csrf_token %}
+    <input type="submit" value="Kontynuuj">
+</form>
+{% endblock %}
